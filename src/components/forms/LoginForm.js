@@ -22,7 +22,7 @@ const LoginForm = () => {
             return
         }
 
-        axios.post('/api/login', {
+        axios.post('https://deepstone-backend.herokuapp.com/api/login', {
             "email": email,
             "password": password
         })

@@ -17,7 +17,7 @@ const SearchInterface = () => {
     }
 
     const fetchSearchResults = async(query) => {
-        const res = await fetch(`/api/company-search?query=${query}`)
+        const res = await fetch(`https://deepstone-backend.herokuapp.com/api/company-search?query=${query}`)
         const data = await res.json()
         setResults(data)
     }

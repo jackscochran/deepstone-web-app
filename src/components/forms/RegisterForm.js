@@ -25,7 +25,7 @@ const RegisterForm = () => {
             return
         }
 
-        axios.post('/api/register', {
+        axios.post('https://deepstone-backend.herokuapp.com/api/register', {
             "email": email,
             "password": password
         })
