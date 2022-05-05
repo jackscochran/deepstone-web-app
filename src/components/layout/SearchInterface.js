@@ -29,7 +29,7 @@ const SearchInterface = () => {
                 secondary='FIND DATA'
                 primary='Search through our database of over 10,000 stocks'
             />
-            <SearchBar onChange={updateQuery} />
+            <SearchBar onChange={updateQuery} query={query}/>
             <Row
                 columns = {results.map((company) => (
                     <Link to={`/company/${company.ticker}`}>

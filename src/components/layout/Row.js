@@ -19,4 +19,8 @@ const Row = ({ columns, verticalAlignment }) => {
     )
 }
 
+Row.defaultProps = {
+    verticalAlignment: 'start'
+}
+
 export default Row 

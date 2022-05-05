@@ -38,23 +38,23 @@ const NavBar = () => {
                         <Link to='/contact'>CONTACT</Link>
                     </div>
                     <div className='col-sm'>
-                        <Link to='/insights'>INSIGHTS</Link>
+                        <Link to='/coming-soon'>INSIGHTS</Link>
                     </div>
                     <div className='col-sm'>
-                        <Link to='/analysis'>ANALYSIS</Link>
+                        <Link to='/coming-soon'>ANALYSIS</Link>
                     </div>
                     <div className='col-sm'>
                         <Link to='/dashboard'>DASHBOARD</Link>
                     </div>
-                    <div className='col-sm'>
-                        <Link to='/dashboard'>< BsPersonCircle/></Link>
-                    </div>
-                    <div className='col-sm-3 offset-sm-0'>
+                    <div className='col-sm-2 offset-sm-1'>
                         <Button 
                             text='TRENDING STOCKS'
                             backgroundColor='#78b7d8'
                             textColor='white'
                         />
+                    </div>
+                    <div className='col-sm'>
+                        <Link to='/register '>< BsPersonCircle/></Link>
                     </div>
                 </div>
             </nav>

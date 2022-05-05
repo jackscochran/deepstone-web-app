@@ -1,6 +1,5 @@
 import Hero from "../misc/Hero"
 import SearchInterface from "../layout/SearchInterface"
-import { useState, useEffect } from 'react'
 
 const InsightsPage = () => {
     return (

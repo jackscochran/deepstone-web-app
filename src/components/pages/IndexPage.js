@@ -1,6 +1,5 @@
 import Hero from '../misc/Hero'
 import Banner from '../misc/Banner'
-import PlansAndPricingTable from '../tables/PlansAndPricingTable'
 import Button from '../misc/Button'
 import Row from '../layout/Row'
 import Image from '../misc/Image'

@@ -15,8 +15,8 @@ const PricingPlan = ({ title, pricePerMonth, numOfInsights, numOfPortfolios }) =
         <div style={style.section}>
             <h4>{title}</h4>
             <p>
-                <b style={style.bold}>{pricePerMonth == 0 ? 'free' : `$${pricePerMonth}`}</b>
-                {pricePerMonth != 0 && ' /month'}
+                <b style={style.bold}>{pricePerMonth === 0 ? 'free' : `$${pricePerMonth}`}</b>
+                {pricePerMonth !== 0 && ' /month'}
             </p>
             <p>
                 <b style={style.bold}>{numOfInsights < 0 ? 'Infinite' : numOfInsights}</b>

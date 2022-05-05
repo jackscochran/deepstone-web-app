@@ -1,9 +1,4 @@
-import { BsSearch } from 'react-icons/bs'
-
-import Row from '../layout/Row'
-import Button from './Button'
-
-const SearchBar = ({ onChange }) => {
+const SearchBar = ({ onChange, query }) => {
 
     const style = {
         container: {
@@ -12,7 +7,6 @@ const SearchBar = ({ onChange }) => {
         bar: {
             width: '100%',
             height: '3.5rem',
-            borderRadius: '15px',
             lineHieght: '2',
             fontSize: '18px'
         }
@@ -20,9 +14,13 @@ const SearchBar = ({ onChange }) => {
 
     return (
         <div style={style.container}>
-            <input onChange={(e) => onChange(e.target.value)} style={style.bar} autocomplete="off" placeholder="Netflix, NFLX " type="search" />,
+            <input value={query} onChange={(e) => onChange(e.target.value)} style={style.bar} autocomplete="off" placeholder="Netflix, NFLX " type="search" />,
         </div>
     )
+}
+
+SearchBar.defaultProps = {
+    query: ''
 }
 
 export default SearchBar

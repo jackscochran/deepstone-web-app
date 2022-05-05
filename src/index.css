@@ -14,13 +14,14 @@ p {
   color: #696969;
 }
 
-a {
+a, .link {
   text-decoration: none;
   color: #78b7d8;
 }
 
-a:hover {
+a:hover, .link:hover {
   color: #696969;
+  cursor: pointer;
 }
 
 nav a {
@@ -42,10 +43,18 @@ nav a:hover{
 input{
   border: 1px solid #cacaca;
   padding: 0 16px;
+  border-radius: 10px;
+  line-height: 2;
+  width: 60%;
+  margin-bottom: 16px;
 }
 
 .text-right {
   text-align: right;
+}
+
+.text-center {
+  text-align: center;
 }
 
 

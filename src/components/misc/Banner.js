@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types'
-
 const Banner = ({ primaryFirst, primary, secondary, topText}) => {
 
-    const bannerStyle = {
-        textAlign: 'center',
-        margin: '120px 60px 50px 60px'
+    const style = {
+        banner: {
+            textAlign: 'center',
+            margin: '80px 60px'
+        }
     }
 
     return (
-        <div style={bannerStyle}>
+        <div style={style.banner}>
             {topText && <p>{topText}</p>}
             {!primaryFirst && <h4><small class='text-muted'>{secondary}</small></h4>}
             <h3>{primary}</h3>
