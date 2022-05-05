@@ -17,7 +17,6 @@ mongoose
 // Since mongoose's Promise is deprecated, we override it with Node's Promise
 mongoose.Promise = global.Promise;
 
-
 // Handle any CORS issues
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
