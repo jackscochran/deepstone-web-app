@@ -22,7 +22,7 @@ const LoginForm = () => {
             return
         }
 
-        axios.post('http://localhost:5000/api/login', {
+        axios.post('/api/login', {
             "email": email,
             "password": password
         })

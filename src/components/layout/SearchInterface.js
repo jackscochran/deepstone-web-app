@@ -17,7 +17,7 @@ const SearchInterface = () => {
     }
 
     const fetchSearchResults = async(query) => {
-        const res = await fetch(`http://localhost:5000/api/company-search?query=${query}`)
+        const res = await fetch(`/api/company-search?query=${query}`)
         const data = await res.json()
         setResults(data)
     }

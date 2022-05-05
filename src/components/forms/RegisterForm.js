@@ -25,7 +25,7 @@ const RegisterForm = () => {
             return
         }
 
-        axios.post('http://localhost:5000/api/register', {
+        axios.post('/api/register', {
             "email": email,
             "password": password
         })
