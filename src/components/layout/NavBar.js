@@ -35,7 +35,7 @@ const NavBar = () => {
                         <Link to='/about'>ABOUT</Link>
                     </div>
                     <div className='col-sm'>
-                        <Link to='/contact'>CONTACT</Link>
+                        <Link to='/coming-soon'>CONTACT</Link>
                     </div>
                     <div className='col-sm'>
                         <Link to='/coming-soon'>INSIGHTS</Link>
@@ -44,7 +44,7 @@ const NavBar = () => {
                         <Link to='/coming-soon'>ANALYSIS</Link>
                     </div>
                     <div className='col-sm'>
-                        <Link to='/dashboard'>DASHBOARD</Link>
+                        <Link to='/coming-soon'>DASHBOARD</Link>
                     </div>
                     <div className='col-sm-2 offset-sm-1'>
                         <Button 
