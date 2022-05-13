@@ -12,9 +12,12 @@ router.get('/company', (req, res, next) => {
 });
 
 router.get('/company-search', (req, res, next) => {
+
+    n = req.query.n ? req.query.n : 20
+
     companyAdaptor.getAllCompanies()
     .then(models => companyAdaptor.filter(models, req.query.query))
-    .then(models => models.slice(0,20))
+    .then(models => models.slice(0,n))
     .then(data => res.json(data))
     .catch(next)
 })
