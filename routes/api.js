@@ -14,6 +14,7 @@ router.get('/company', (req, res, next) => {
 router.get('/company-search', (req, res, next) => {
     companyAdaptor.getAllCompanies()
     .then(data => companyAdaptor.filter(data, req.query.query))
+    .then(data = data[20])
     .then(data => res.json(data))
     .catch(next)
 })

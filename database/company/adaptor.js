@@ -8,7 +8,7 @@ const companyAdaptor = (() => {
 
     function getAllCompanies(){
         companies = Company.find({})
-        return companies[20]
+        return companies
     }
 
     function filter(models, query){
