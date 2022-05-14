@@ -22,6 +22,17 @@ router.get('/company-search', (req, res, next) => {
     .catch(next)
 })
 
+router.get('/trending', (req, res, next) => {
+
+    n = req.query.n ? req.query.n : 20
+
+    companyAdaptor.getAllCompanies()
+    .then(models => companyAdaptor.getTrendingCompanies(n, models, req.query.startDate, req.query.endDate))
+    .then(data => res.json(data))
+    .catch(next)
+
+})
+
 router.get('/financials', (req, res, next) => {
     financialsAdaptor.getFinancials(
         req.query.ticker,

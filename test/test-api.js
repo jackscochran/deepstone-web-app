@@ -6,6 +6,21 @@ API_URL = 'http://127.0.0.1:5000'
 describe('API Routes', () => {
     before(() => {});
 
+    describe('GET /trending', () => {
+        it('should return a list of 20 stocks if no n argument was passed', () => {
+            return axios.get(API_URL + '/api/trending').then(response => {
+                bodyObject = response.data
+                expect(bodyObject.length).to.equal(20)
+            })
+        });
+        it('should return a list of 2 stocks if n = 2', () => {
+            return axios.get(API_URL + '/api/trending?n=2').then(response => {
+                bodyObject = response.data
+                expect(bodyObject.length).to.equal(2)
+            })
+        });
+    });
+
     describe('GET /company', () => {
         it('should retun company with correct keys', () => {
             return axios.get(API_URL + '/api/company?ticker=aapl').then(response => {
@@ -192,6 +207,8 @@ describe('API Routes', () => {
                 })
         })
     });
+
+
 
     after( () => {
         // Delete users that were added

@@ -22,10 +22,17 @@ const marketPriceAdaptor = (()=>{
         return price;
     }
 
+    async function getPerformance(ticker, startDate, endDate){
+        console.log()
+
+        return (await getPrice(ticker, endDate)) / (await getPrice(ticker, startDate))
+    }
+
     return {
         getHistoricalPrices,
         formatPricesIntoTimeSeries,
-        getPrice
+        getPrice,
+        getPerformance
     }
 })()
 
