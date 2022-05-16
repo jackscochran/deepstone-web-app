@@ -57,7 +57,8 @@ const StatementComparator = ({ company, companyPeers, date, period, changePeriod
         const messages = {            
             'incomeStatement': `For the ${period === 'annual' ? 'year' : period} ending `,
             'balanceSheet': `As at `,
-            'financialMetrics': `As of `
+            'financialMetrics': `As of `,
+            'cashflowStatement': `For the ${period === 'annual' ? 'year' : period} ending `
         }   
         return messages[statement]
     } 

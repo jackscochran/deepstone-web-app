@@ -12,7 +12,6 @@ const InsightsPage = () => {
     useEffect(() => {
         if (!hasLoaded){
             fetchCompanyList()
-            setHasLoaded(true)
         }
     })
 
@@ -20,6 +19,7 @@ const InsightsPage = () => {
         const res = await fetch(`https://deepstone-backend.herokuapp.com/api/trending`)
         const data = await res.json()
         setCompanyList(data)
+        setHasLoaded(true)
     }
 
     return (

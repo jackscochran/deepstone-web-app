@@ -35,11 +35,11 @@ const CompanyPage = () => {
     useEffect(() => {
         if (!dataIsReturned){
             loadData(ticker, priceStart, priceEnd, financialsDate, period)
-            setDataIsReturned(true)
         }
     })
     const loadData = async(ticker, priceStart, priceEnd, financialsDate, period) => {
         setCompanyData(await fetchCompany(ticker, priceStart, priceEnd, financialsDate, period))
+        setDataIsReturned(true)
     }
     const loadPeerData = async(companyPeers, priceStart, priceEnd, financialsDate, period) => {
         let newPeers = []
