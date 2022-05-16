@@ -1,5 +1,4 @@
 import Banner from '../misc/Banner'
-import Row from '../layout/Row'
 
 const ContactPage = () => {
 
