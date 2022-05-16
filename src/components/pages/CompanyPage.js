@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
 import timeUtil from '../../utils/time'
 import StatementComparator from '../tables/StatementComparator'
@@ -8,7 +8,7 @@ import PriceComparator from '../tables/PriceComparator'
 
 const CompanyPage = () => {
 
-    const ticker = useParams().ticker
+    
 
     const [dataIsReturned, setDataIsReturned] = useState(false)
     const [companyData, setCompanyData] = useState({})
@@ -33,6 +33,8 @@ const CompanyPage = () => {
     const [period, setPeriod] = useState('quarter')
 
     useEffect(() => {
+        let url = window.location.href.split('/')
+        let ticker = url[url.length-1]
         if (!dataIsReturned){
             loadData(ticker, priceStart, priceEnd, financialsDate, period)
         }
@@ -50,7 +52,7 @@ const CompanyPage = () => {
         setCompanyPeers(newPeers)
     }
     const reload = async(companyPeers, priceStart, priceEnd, financialsDate, period) => {
-        loadData(ticker, priceStart, priceEnd, financialsDate, period)  
+        loadData(companyData.ticker, priceStart, priceEnd, financialsDate, period)  
         loadPeerData(companyPeers, priceStart, priceEnd, financialsDate, period)
     }
 
@@ -177,7 +179,7 @@ const CompanyPage = () => {
         <div className='container'>
             <div  className='narrow-container'>
                 <CompanyPortfolio 
-                    ticker={ticker} 
+                    ticker={companyData.ticker}
                     companyData={companyData.data}
                 />
             </div>
