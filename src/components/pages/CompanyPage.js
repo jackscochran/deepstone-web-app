@@ -77,7 +77,7 @@ const CompanyPage = () => {
             return res.json()
         }
         const fetchFinancials = async(ticker, date, period) => {
-            const res = await fetch(`http://deepstone-backend.herokuapp.com/api/financials?ticker=${ticker}&date=${date}&period=${period}`)
+            const res = await fetch(`https://deepstone-backend.herokuapp.com/api/financials?ticker=${ticker}&date=${date}&period=${period}`)
             return res.json()
         }
         const financials = await fetchFinancials(ticker, financialsDate, period)
