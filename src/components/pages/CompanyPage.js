@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 
 import timeUtil from '../../utils/time'
 import StatementComparator from '../tables/StatementComparator'
@@ -8,7 +7,6 @@ import PriceComparator from '../tables/PriceComparator'
 
 const CompanyPage = () => {
 
-    
 
     const [dataIsReturned, setDataIsReturned] = useState(false)
     const [companyData, setCompanyData] = useState({})
