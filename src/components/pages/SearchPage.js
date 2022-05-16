@@ -5,7 +5,7 @@ const SearchPage = () => {
     return (
         <div className='narrow-container'>
             <Hero
-                imgSrc='images/digitalArt2.jfif'
+                // imgSrc='images/digitalArt2.jfif'
                 title='Search .'
                 text={`Find stocks of your interest and use tools to provide deeper analysis.`}
                 textColor='black'

@@ -25,7 +25,7 @@ const InsightsPage = () => {
     return (
         <div className='narrow-container'>
             <Hero
-                imgSrc='images/digitalArt2.jfif'
+                // imgSrc='images/digitalArt2.jfif'
                 title='Insights .'
                 text={`We provides simplified stock market analysis for you to make the right decisions.`}
                 textColor='black'
