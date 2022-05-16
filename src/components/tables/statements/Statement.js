@@ -1,8 +1,12 @@
 import formatStringUtil from '../../../utils/formatStrings'
 import { BsPlusCircle, BsX } from 'react-icons/bs'
 import { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+
 
 const Statement = ({ mainCompany, companies, statement, addCompany, removeCompany }) => {
+
+    const navigateTo = useNavigate()
 
     const [results, setResults] = useState([])
 
@@ -44,7 +48,11 @@ const Statement = ({ mainCompany, companies, statement, addCompany, removeCompan
                                 </th>}
                                 {companies && companies.map(company => (
                                     <th className='text-right statement__header'>
-                                        <span className='highlight-black' onClick={() => window.location.replace(`/company/${company && company.ticker}`)}>{company && company.companyName}</span><span onClick={() => removeCompany(company.ticker)} className='highlight-black'><BsX/></span>
+                                        <span onClick={()=>{
+                                            navigateTo(`/company/${company.ticker}`)
+                                            window.location.reload()}} className='highlight-black'>{company && company.companyName}</span>
+                                        <span onClick={() => {
+                                            removeCompany(company.ticker)}} className='highlight-black'><BsX/></span>
                                     </th>
                                     ))}
                                 <th className='text-muted statement__add'>
