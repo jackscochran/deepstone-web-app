@@ -30,7 +30,7 @@ const InsightsPage = () => {
                 text={`We provides simplified stock market analysis for you to make the right decisions.`}
                 textColor='black'
             />
-            <div className='spacer-100'>
+            <div className=''>
                 <Row 
                     columns ={
                         companyList.map(company => (

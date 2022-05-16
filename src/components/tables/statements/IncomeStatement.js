@@ -103,7 +103,7 @@ const IncomeStatement = ({ mainCompany, companies, statements, addCompany, remov
          },
         {
            name: 'Less: Interest Expense',
-           values: getStatements().map(statement => statement ? statement.interestExpense : null),
+           values: getStatements().map(statement => statement ? -statement.interestExpense : null),
            cssClass: 'statement__item' 
         },
         {
