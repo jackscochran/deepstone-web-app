@@ -1,134 +1,142 @@
 import Statement from "./Statement"
 
-const IncomeStatement = ({ data }) => {
+const IncomeStatement = ({ mainCompany, companies, statements, addCompany, removeCompany }) => {
 
-    const statement = [
+    const getStatements = () => Object.keys(mainCompany).length > 0 ? [mainCompany.financials.incomeStatement].concat(statements) : []
+
+    const incomeStatement = [
         {
             name: 'REVENUE',
-            value: '$',
+            values: [],
             cssClass: 'statement__header'
         },
         {
             name: 'Total Revenue',
-            value: data ? data.revenue : null,
+            values: getStatements().map(statement => statement ? statement.revenue : null),
             cssClass: 'statement__item'
         },
         {
             name: 'Cost of Goods Sold',
-            value: data ? data.costOfRevenue : null,
+            values: getStatements().map(statement => statement ? statement.costOfRevenue : null),
             cssClass: 'statement__item'
         },
         {
             name: 'Gross Profit',
-            value: data ? data.grossProfit : null,
+            values: getStatements().map(statement => statement ? statement.grossProfit : null),
             cssClass: 'statement__line-item'
         },
         {
             name: null,
-            value: null,
+            values: [],
             cssClass: 'statement__empty-row'
         },
         {
             name: 'OPERATING EXPENSES',
-            value: null,
+            values: [],
             cssClass: 'statement__header'
         },
         {
             name: 'General & Administrative',
-            value: data ? data.generalAndAdministrativeExpenses : null,
+            values: getStatements().map(statement => statement ? statement.generalAndAdministrativeExpenses : null),
             cssClass: 'statement__item'
         },
         {
             name: 'Selling & Marketing',
-            value: data ? data.sellingAndMarketingExpenses : null,
+            values: getStatements().map(statement => statement ? statement.sellingAndMarketingExpenses : null),
             cssClass: 'statement__item'
         },
         {
             name: 'Selling General & Administrative',
-            value: data ? data.sellingGeneralAndAdministrativeExpenses : null,
+            values: getStatements().map(statement => statement ? statement.sellingGeneralAndAdministrativeExpenses : null),
             cssClass: 'statement__item'
         },
         {
             name: 'Research & Development',
-            value: data ? data.researchAndDevelopmentExpenses : null,
+            values: getStatements().map(statement => statement ? statement.researchAndDevelopmentExpenses : null),
             cssClass: 'statement__item'
         },
         {
             name: 'Other Expenses',
-            value: data ? data.otherExpenses : null,
+            values: getStatements().map(statement => statement ? statement.otherExpenses : null),
             cssClass: 'statement__item'
         },
         {
             name: null,
-            value: null,
+            values: [],
             cssClass: 'statement__empty-row'
         },
 
         {
             name: 'Total Operating Expenses',
-            value: data ? data.operatingExpenses : null,
+            values: getStatements().map(statement => statement ? statement.operatingExpenses : null),
             cssClass: 'statement__line-total'
         },
         {
             name: 'EBITDA',
-            value: data ? data.grossProfit : null,
+            values: getStatements().map(statement => statement ? statement.ebitda : null),
             cssClass: 'statement__line-item'
         },
         {
             name: null,
-            value: null,
+            values: [],
             cssClass: 'statement__empty-row'
         },
         {
            name: 'Deprectiation & Ammortization',
-           value: data ? data.depreciationAndAmortization : null,
+           values: getStatements().map(statement => statement ? statement.depreciationAndAmortization : null),
            cssClass: 'statement__item' 
         },
         {
             name: 'Operating Profit',
-            value: data ? data.grossProfit : null,
+            values: getStatements().map(statement => statement ? statement.operatingIncome : null),
             cssClass: 'statement__line-item'
         },
         {
             name: null,
-            value: null,
+            values: [],
             cssClass: 'statement__empty-row'
         },
         {
             name: 'Interest Income',
-            value: data ? data.interestIncome : null,
+            values: getStatements().map(statement => statement ? statement.interestIncome : null),
             cssClass: 'statement__item' 
          },
         {
            name: 'Less: Interest Expense',
-           value: data ? data.interestExpense : null,
+           values: getStatements().map(statement => statement ? statement.interestExpense : null),
            cssClass: 'statement__item' 
         },
         {
             name: 'Income Before Taxes',
-            value: data ? data.grossProfit : null,
+            values: getStatements().map(statement => statement ? statement.incomeBeforeTax : null),
             cssClass: 'statement__line-item'
         },
         {
             name: null,
-            value: null,
+            values: [],
             cssClass: 'statement__empty-row'
         },
         {
             name: 'Income Tax Expense',
-            value: data ? data.interestIncome : null,
+            values: getStatements().map(statement => statement ? statement.incomeTaxExpense : null),
             cssClass: 'statement__item' 
          },
          {
             name: 'Net Income',
-            value: data ? data.grossProfit : null,
+            values: getStatements().map(statement => statement ? statement.netIncome : null),
             cssClass: 'statement__line-item'
         },
 
     ]
 
     return (
-        <Statement statement={statement}/>
+        <Statement 
+            mainCompany={mainCompany.data}
+            companies={companies} 
+            statement={incomeStatement} 
+            addCompany={addCompany} 
+            removeCompany={removeCompany}
+            />
     )   
 }
 

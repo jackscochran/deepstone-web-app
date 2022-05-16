@@ -33,7 +33,8 @@ nav a:hover{
 }
 
 .narrow-container{
-  margin: 20px 15%;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 .double-space{
@@ -49,23 +50,95 @@ input{
   margin-bottom: 16px;
 }
 
+.row__column{
+  /* padding: 25px; */
+}
+
 .text-right {
   text-align: right;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-center {
   text-align: center;
 }
 
+.text-blue{
+  color: #78b7d8;
+}
+
+.spacer-100 {
+  margin: 100px 0;
+}
+
+.card {
+  display: flex;
+  justify-content: top;
+  align-items: stretch;
+  width: 100%;
+  background-color: white;
+  box-shadow:  0 6px 20px 0 rgb(0 0 0 / 10%);
+  padding: 30px;
+  margin: 16px;
+}
+
+.panel {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: 16px;
+  transition: border-top 0.5s;
+}
+
+.panel:hover{
+  border-top: 3px solid #78b7d8;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+}
+
+
+.highlight-black:hover{
+  color:#000000 !important;
+  cursor: pointer;
+}
+
+.vertical-space{
+  margin: 100px 0
+}
 
 /* ---------------- STATEMENTS --------------- */
 
 .statement {
   line-height: 30px;
+  width: 90%;
+}
+
+.statement__add{
+  width: 15%;
+  text-align: right;
+  line-height: 2;
+}
+
+.statement__add:hover{
+  color:#000000 !important;
+  cursor: pointer;
+}
+
+.statement__bold {
+  font-weight: bold;
 }
 
 .statement td {
-  padding-right: 75px;
+}
+
+.statement__num {
+  text-align: right;
 }
 
 .statement__header {
@@ -86,4 +159,27 @@ input{
   height: 12px;
 }
 
+.statement__add{
+  text-align: right;
+  width: 22%;
+  
+}
+
+.statement__add input::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+
 /* -------------- */
+
+/* ---------------- PRICE CHART --------------- */
+
+.price-chart__control{
+  margin: 50px 0;
+  display:flex;
+  align-items: center;
+}
+.price-chart__control-date-values{
+  width: 80%;
+}
+
+

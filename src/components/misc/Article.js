@@ -1,6 +1,6 @@
 import { BsBarChart } from 'react-icons/bs'
 
-const Article = ({ icon, title, body }) => {
+const Article = ({ icon, title, secondary, body }) => {
 
     const style = {
         container: {
@@ -13,8 +13,10 @@ const Article = ({ icon, title, body }) => {
     return (
         <div style={style.container}>
             {icon && icon}
-            <h4 style={style.text}>{title}</h4>
-            <p style={style.text}>{body}</p>
+            <h4 style={style.text} >{title}</h4>
+            <h5 className='text-muted'>{secondary}</h5>
+            <hr/>
+            <p >{body}</p>
         </div>
     )
 }

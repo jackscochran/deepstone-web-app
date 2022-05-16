@@ -35,23 +35,25 @@ const NavBar = () => {
                         <Link to='/about'>ABOUT</Link>
                     </div>
                     <div className='col-sm'>
-                        <Link to='/coming-soon'>CONTACT</Link>
+                        <Link to='/contact'>CONTACT</Link>
                     </div>
                     <div className='col-sm'>
-                        <Link to='/coming-soon'>INSIGHTS</Link>
+                        <Link to='/insights'>INSIGHTS</Link>
                     </div>
-                    <div className='col-sm'>
+                <div className='col-sm'>
                         <Link to='/coming-soon'>ANALYSIS</Link>
-                    </div>
-                    <div className='col-sm'>
+                    </div> 
+                     <div className='col-sm'>
                         <Link to='/coming-soon'>DASHBOARD</Link>
-                    </div>
+                    </div> 
                     <div className='col-sm-2 offset-sm-1'>
-                        <Button 
-                            text='TRENDING STOCKS'
-                            backgroundColor='#78b7d8'
-                            textColor='white'
-                        />
+                        <Link to='/search'>
+                            <Button 
+                                text='SEARCH STOCKS'
+                                backgroundColor='#78b7d8'
+                                textColor='white'
+                            />
+                        </Link>
                     </div>
                     <div className='col-sm'>
                         <Link to='/register '>< BsPersonCircle/></Link>

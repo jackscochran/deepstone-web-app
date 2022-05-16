@@ -11,8 +11,22 @@ const timeUtil = (() => {
         return today
     }
 
+    function addDays(date, days){
+        var dateObject = new Date(date)
+        dateObject.setDate(dateObject.getDate() + days);
+        return dateToString(dateObject)
+    }
+
+    function getDifferenceInDays(startDate, endDate) {
+        return Math.ceil(Math.abs((new Date(endDate)) - (new Date(startDate)))/ (1000 * 60 * 60 * 24));
+    }
+
+    const dateToString = (date) => date.toISOString().split('T')[0]
+
     return {
-        getCurrentDay
+        getCurrentDay,
+        addDays,
+        getDifferenceInDays
     }
 })()
 

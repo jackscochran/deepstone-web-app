@@ -1,5 +1,6 @@
 import SearchBar from "../misc/SearchBar"
 import Banner from '../misc/Banner'
+import sectorIcons from "../../utils/specificIcons"
 
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -33,12 +34,16 @@ const SearchInterface = () => {
             <Row
                 columns = {results.map((company) => (
                     <Link to={`/company/${company.ticker}`}>
-                        <Article key={company._id}
-                            title={company.companyName}
-                            body={company.sector}
-                        />
-                        <hr/>
+                        <div className='card'>
+                            <Article key={company._id}
+                                icon={sectorIcons[company.sector]}
+                                title={company.companyName}
+                                secondary={company.ticker}
+                                body={company.industry}
+                            />
+                        </div>
                     </Link>
+
                 ))}
                 verticalAlignment='start'
             />

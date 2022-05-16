@@ -14,7 +14,7 @@ const SearchBar = ({ onChange, query }) => {
 
     return (
         <div style={style.container}>
-            <input value={query} onChange={(e) => onChange(e.target.value)} style={style.bar} autocomplete="off" placeholder="Netflix, NFLX " type="search" />,
+            <input value={query} onChange={(e) => onChange(e.target.value)} style={style.bar} autoComplete="off" placeholder="Netflix, NFLX " type="search" />,
         </div>
     )
 }

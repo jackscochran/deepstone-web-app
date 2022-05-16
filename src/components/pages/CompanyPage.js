@@ -1,114 +1,216 @@
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
-
-import Banner from '../misc/Banner'
-import PriceChart from '../misc/PriceChart'
-import Row from '../layout/Row'
-
 import timeUtil from '../../utils/time'
-// import StatementCarousel from '../layout/StatementComparator'
+import StatementComparator from '../tables/StatementComparator'
+import CompanyPortfolio from '../tables/CompanyPortfolio'
+import PriceComparator from '../tables/PriceComparator'
 
 const CompanyPage = () => {
 
-    const [dataIsReturned, setDataIsReturned] = useState(false)
-    const [companyData, setCompanyData] = useState({})
-
-    const [priceData, setPriceData] = useState({})
-    const [priceStart, setPriceStart] = useState('2020-04-01')
-    const [priceEnd, setPriceEnd] = useState(timeUtil.getCurrentDay())
-
-
-    useEffect(() => {
-        if (!dataIsReturned)
-            loadData()
-    })
-
-    const loadData = () => {
-        const loadCompany = async() => {
-            const res = await fetch(`http://localhost:5000/api/company?ticker=${ticker}`)
-            const data = await res.json()   
-            setCompanyData(data[0])
-        }
-
-        const loadPriceData = async() => {
-            const res = await fetch(`http://localhost:5000/api/market-prices?ticker=${ticker}&startDate=${priceStart}&endDate=${priceEnd}`)
-            const data = await res.json()
-            setPriceData(data)
-        }
-
-        loadCompany()
-        loadPriceData()
-        setDataIsReturned(true)
-    }
-
-    const getProfileItems = () => {
-        const column1 = []
-        const column2 = []
-        var i = 0
-        for (const item in companyData.profile){
-            if (i < Object.keys(companyData.profile).length/2){
-                column1.push(
-                    <p><b>{item}</b>: {companyData.profile[item]}</p>
-                )
-            }else{
-                column2.push(
-                    <p><b>{item}</b>: {companyData.profile[item]}</p>
-                )
-            }
-            i = i + 1
-        }
-        return <Row columns={[column1, column2]} verticalAlignment='start'/>
-    }
-
     const ticker = useParams().ticker
 
-    const style = {
-        dateText: {
-            textAlign: 'right',
-            margin: '15px 30% 15px 10%'
-        },
-        dateInput: {
-            marginLeft: '15px'
+    const [dataIsReturned, setDataIsReturned] = useState(false)
+    const [companyData, setCompanyData] = useState({})
+    const [companyPeers, setCompanyPeers] = useState(
+        [
+            // {
+            //     ticker: ticker,
+            //     data: company,
+            //     prices: {},
+            //     financials: {}
+            // }
+        ]
+    )
+
+    const [dateUnit, setDateUnit] = useState('month')
+    const [dateRange, setDateRange] = useState(6)
+    const [priceEnd, setPriceEnd] = useState(timeUtil.getCurrentDay())
+    const [priceStart, setPriceStart] = useState(timeUtil.addDays(priceEnd, -6*30))
+
+
+    const [financialsDate, setFinancialsDate] = useState(timeUtil.getCurrentDay())
+    const [period, setPeriod] = useState('quarter')
+
+    useEffect(() => {
+        if (!dataIsReturned){
+            loadData(ticker, priceStart, priceEnd, financialsDate, period)
+            setDataIsReturned(true)
         }
+    })
+    const loadData = async(ticker, priceStart, priceEnd, financialsDate, period) => {
+        setCompanyData(await fetchCompany(ticker, priceStart, priceEnd, financialsDate, period))
+    }
+    const loadPeerData = async(companyPeers, priceStart, priceEnd, financialsDate, period) => {
+        let newPeers = []
+        for(let i=0; i<companyPeers.length; i++){
+            const newPeer = await fetchCompany(companyPeers[i].ticker, priceStart, priceEnd, financialsDate, period)
+            newPeers.push(newPeer)
+        }
+        setCompanyPeers(newPeers)
+    }
+    const reload = async(companyPeers, priceStart, priceEnd, financialsDate, period) => {
+        loadData(ticker, priceStart, priceEnd, financialsDate, period)  
+        loadPeerData(companyPeers, priceStart, priceEnd, financialsDate, period)
+    }
+
+
+    const addCompany = async(ticker) => {
+        let newCompany = await fetchCompany(ticker, priceStart, priceEnd, financialsDate, period)
+        if(newCompany.data && (companyPeers.length === companyPeers.filter(peer => peer.ticker !== ticker).length)){
+            companyPeers.push(newCompany)
+            setCompanyPeers(companyPeers)
+        }
+        reload(companyPeers, priceEnd, priceEnd, financialsDate, period)
+        
+    }
+    const removeCompany = (ticker) => {
+        setCompanyPeers(companyPeers.filter(peer => peer.ticker !== ticker))
+    }
+    const fetchCompany = async(ticker, priceStart, priceEnd, financialsDate, period) => {
+        const fetchCompanyData = async(ticker) => {
+            const res = await fetch(`https://deepstone-backend.herokuapp.com/api/company?ticker=${ticker}`)
+            return await res.json()
+        }
+        const fetchPriceData = async(ticker, priceStart, priceEnd) => {
+            const res = await fetch(`https://deepstone-backend.herokuapp.com/api/market-prices?ticker=${ticker}&startDate=${priceStart}&endDate=${priceEnd}`)
+            return res.json()
+        }
+        const fetchFinancials = async(ticker, date, period) => {
+            const res = await fetch(`http://deepstone-backend.herokuapp.com/api/financials?ticker=${ticker}&date=${date}&period=${period}`)
+            return res.json()
+        }
+        const financials = await fetchFinancials(ticker, financialsDate, period)
+        if (financials)
+            setFinancialsDate(financials.date)
+        return {
+            ticker: ticker,
+            data: (await fetchCompanyData(ticker))[0],
+            prices: await fetchPriceData(ticker, priceStart, priceEnd),
+            financials: financials
+        }
+    }
+
+
+    const changePriceStart = (newDate) => {
+        setPriceStart(newDate)
+        reload(companyPeers, newDate, priceEnd, financialsDate, period)
+        loadDateRange(newDate, priceEnd)
+    }   
+    const changePriceEnd = (newDate) => {
+        setPriceEnd(newDate)
+        reload(companyPeers, priceStart, newDate, financialsDate, period)
+        loadDateRange(priceStart, newDate)
+    }   
+
+    const loadDateRange = (startDate, endDate) => {
+        const differenceInDays = timeUtil.getDifferenceInDays(startDate, endDate)
+        if (differenceInDays < 30){
+            setDateUnit('day')
+            setDateRange(differenceInDays)
+            return
+        }
+        const differenceInMonths = Math.round(differenceInDays / 30)
+        if (differenceInMonths < 12){
+            setDateUnit('month')
+            setDateRange(differenceInMonths)
+            return
+        }
+        const differenceInYears = Math.round(differenceInMonths / 12)
+        setDateUnit('year')
+        setDateRange(differenceInYears)
+    }
+    const iterateDateRange = (direction) => {
+        let newDateRange = dateRange + direction
+        if (newDateRange < 1)
+            toggleDateUnit()
+        else
+            changeDateRange(newDateRange, dateUnit)
+    }
+    const toggleDateUnit = () => {
+        if (dateUnit === 'year'){
+            changeDateRange(6, 'month')
+        }else if(dateUnit === 'month'){
+            changeDateRange(7, 'day')
+        }else{
+            changeDateRange(2, 'year')
+        }
+    }
+    const changeDateRange = (newRange, newUnit) => {
+        const getDateRangeInDays = (range) => {
+            const days = {
+                'day': range,
+                'month': range * 30,
+                'year': range * 360
+            }
+            return days[newUnit]
+        }
+    
+        const newPriceStart = timeUtil.addDays(priceEnd, -getDateRangeInDays(newRange)) 
+        setPriceStart(newPriceStart)
+        setDateRange(newRange)
+        setDateUnit(newUnit)
+        reload(companyPeers, newPriceStart, priceEnd, financialsDate, period)
+    }
+
+
+    const changeFinancialsDate = (direction) => {
+
+        let newDate = timeUtil.addDays(financialsDate, 
+            (period === 'annual' ? 
+                (direction > 0) ? 370 : -360
+                :
+                (direction > 0) ? 100 : -90
+            )
+        )
+        
+        setFinancialsDate(newDate)
+        reload(companyPeers, priceStart, priceEnd, newDate, period)
+    }
+    const changePeriod = () => {
+        let newPeriod = period === 'annual' ? 'quarter' : 'annual'
+        setPeriod(newPeriod)
+        reload(companyPeers, priceStart, priceEnd, financialsDate, newPeriod)
     }
 
     return (
         <div className='container'>
-            <Row
-                columns={[
-                    <div>
-                        <Banner 
-                            primaryFirst={false}
-                            primary={companyData.companyName}
-                            secondary={ticker.toUpperCase()}
-                        />
-                        <hr/>
-                        {getProfileItems()}
-                    </div>,
-                    <div>
-                        <Banner 
-                            primary='Daily Price Data'
-                            secondary={`Company: ${ticker}`}
-                        />
-                        <hr/>
-                        <div style={style.dateText}>
-                            <label for='startDate'>Start: </label><input style={style.dateInput} name='startDate' type='date' onChange={(e) => setPriceStart(e.target.value)} value={priceStart}></input>
-                        </div>
-                        <div style={style.dateText}>
-                            <label for='endDate'>End: </label><input style={style.dateInput} name='endDate' type='date' onChange={(e) => setPriceEnd(e.target.value)} value={priceEnd}></input>
-                        </div>
-                        <br/>
-                        <PriceChart data={priceData}/>
-                    </div>
-                
-                ]}
-                verticalAlignment='start'
-            />
-            {/* <StatementCarousel ticker={ticker}/> */}
+            <div  className='narrow-container'>
+                <CompanyPortfolio 
+                    ticker={ticker} 
+                    companyData={companyData.data}
+                />
+            </div>
+            <div  className='card vertical-space'>
+                <PriceComparator 
+                    companyData={companyData} 
+                    companyPeers={companyPeers}
+                    priceStart={priceStart} 
+                    changePriceStart={changePriceStart}
+                    priceEnd={priceEnd}
+                    changePriceEnd={changePriceEnd}
+                    dateUnit={dateUnit}
+                    toggleDateUnit={toggleDateUnit}
+                    dateRange={dateRange}
+                    iterateDateRange={iterateDateRange}
+                />
+            </div>
+            <div>
+                <StatementComparator 
+                    company={companyData}
+                    companyPeers={companyPeers}
+                    date={financialsDate}
+                    period={period}
+                    changePeriod={changePeriod}
+                    addCompany={addCompany}
+                    removeCompany={removeCompany}
+                    changeDate = {changeFinancialsDate}
+                />
+            </div>
 
         </div>
     )
 }
+
 
 export default CompanyPage

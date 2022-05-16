@@ -1,4 +1,4 @@
-const Hero = ({ imgSrc, title, text, button}) => {
+const Hero = ({ imgSrc, title, text, button, textColor}) => {
 
     const style = {
         container: {
@@ -14,7 +14,7 @@ const Hero = ({ imgSrc, title, text, button}) => {
         },
         text: {
             textAlign: 'center',
-            color: 'white',
+            color: textColor ? textColor : 'white',
         },
     }
 
@@ -27,5 +27,6 @@ const Hero = ({ imgSrc, title, text, button}) => {
         </div>
     )
 }
+
 
 export default Hero

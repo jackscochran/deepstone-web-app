@@ -9,20 +9,6 @@ const RegisterPage = () => {
     const [existingUser, setExistingUser] = useState(false)
     
     const style = {
-        page: {
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '50px',
-        },
-        card: {
-            display: 'flex',
-            justifyContent: 'center',
-            width: '50%',
-            backgroundColor: 'white',
-            textAlign: 'center',
-            boxShadow: '0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)',
-            padding: '0 40px 40px 40px'
-        },
         login: {
             display: !existingUser ? 'none' : 'block'
         },
@@ -32,8 +18,8 @@ const RegisterPage = () => {
     }
 
     return (
-        <div style={style.page}>
-            <div style={style.card}>
+        <div className='center-content narrow-container'>
+            <div className='card text-center'>
 
                 <div style={style.register}>
                     <Banner 

@@ -1,18 +1,10 @@
 const Row = ({ columns, verticalAlignment }) => {
 
-    const style = {
-        row: {
-            margin: '80px 0'
-        },
-        column: {
-            margin: '0 20px'
-        }
-    }
 
     return (
-        <div style={style.row} className={`row align-items-${verticalAlignment}`}>
-            {columns.map(column => (
-                <div style={style.column} className='col-sm'>{column}</div>
+        <div className={`row align-items-${verticalAlignment} center-content`}>
+            {columns.map((column, index) => (
+                <div key={index} className='col-lg-3 col-md-6 row__column'>{column}</div>
             ))}
             
         </div>

@@ -9,15 +9,17 @@ const AboutPage = () => {
     
     return(
         <>
-            <Hero 
-                imgSrc='images/nebula.jpg'
-                title='About Us'
-            />
+            <div className='narrow-container'>
+                <Hero 
+                    imgSrc='images/digitalArt3.jpg'
+                    title='About Us'
+                    textColor='black'
+                />
+            </div>
             <div className='narrow-container'>
                 <Banner 
                     primary='Bridging the gap between you and the stock market pros.'
                 />
-                <br/>
                 <hr/>
                 <br/>
                 <p className='double-space text-center'>Our purpose is to help make young investors comfortable when making investments in the stock market, through a simple online stock analysis tool, backed by A.I.At ALIIAS we understand that when you start investing it can be overwhelming, but that is common. There can be a lot of confusing terms, concepts and trades that can seem like only rich or institutional investors (such as hedge funds) can invest and make good returns. But at ALIIAS we can give you the edge with investing you didn't think you had before. With in-depth stock analysis such as stock ratings, company financials and a A.I generated stock portfolio with returns that beat the S&P each year, you can grow your wealth like the stock market pros.</p>
@@ -39,12 +41,7 @@ const AboutPage = () => {
                             icon={<BsBucket/>}
                             title='Data Cleaning'
                             body='During and after collection, we clean and format the data for the companies we have collected. This includes joining information gathered from different sources and removing any companies with "dirty" data which could skew our results.'
-                        />
-                    ]}
-                    verticalAlignment='start'
-                />
-                <Row 
-                    columns ={[
+                        />,
                         <Article
                             icon={<BsCalculator/>}
                             title='Ratio Calculations'
@@ -55,12 +52,7 @@ const AboutPage = () => {
                             icon={<BsXDiamond/>}
                             title='Training the Algorithm'
                             body='Using the clean and formatted data, our algorithm can learn from 10 years worth of company data and stock performance to find which metrics are the most reflective of future stock performance. This is done everyday using new data that has been collected.'
-                        />
-                    ]}
-                    verticalAlignment='start'
-                />
-                <Row 
-                    columns ={[
+                        />,
                         <Article
                             icon={<BsAward/>}
                             title='Stock Ratings'

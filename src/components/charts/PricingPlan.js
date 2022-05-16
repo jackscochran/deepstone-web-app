@@ -1,4 +1,4 @@
-import Button from './Button'
+import Button from '../misc/Button'
 
 const PricingPlan = ({ title, pricePerMonth, numOfInsights, numOfPortfolios }) => {
     
