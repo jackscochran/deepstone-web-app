@@ -181,21 +181,24 @@ const CompanyPage = () => {
                     companyData={companyData.data}
                 />
             </div>
-            <div  className='card vertical-space'>
-                <PriceComparator 
-                    companyData={companyData} 
-                    companyPeers={companyPeers}
-                    priceStart={priceStart} 
-                    changePriceStart={changePriceStart}
-                    priceEnd={priceEnd}
-                    changePriceEnd={changePriceEnd}
-                    dateUnit={dateUnit}
-                    toggleDateUnit={toggleDateUnit}
-                    dateRange={dateRange}
-                    iterateDateRange={iterateDateRange}
-                />
-            </div>
-            <div>
+            {companyData.prices && companyData.prices.length > 0 && 
+                <div  className='card vertical-space'>
+                    <PriceComparator 
+                        companyData={companyData} 
+                        companyPeers={companyPeers}
+                        priceStart={priceStart} 
+                        changePriceStart={changePriceStart}
+                        priceEnd={priceEnd}
+                        changePriceEnd={changePriceEnd}
+                        dateUnit={dateUnit}
+                        toggleDateUnit={toggleDateUnit}
+                        dateRange={dateRange}
+                        iterateDateRange={iterateDateRange}
+                    />
+                </div>
+            }
+
+            <div className={!(companyData.prices && companyData.prices.length > 0) && 'card vertical-space'}>
                 <StatementComparator 
                     company={companyData}
                     companyPeers={companyPeers}
