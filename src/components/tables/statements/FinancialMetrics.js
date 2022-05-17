@@ -6,73 +6,6 @@ const FinancialMetrics = ({ mainCompany, companies, statements, addCompany, remo
     
     let financialMetrics = [
         {
-            name: 'SOLVENCY',
-            values: [],
-            cssClass: 'statement__header'
-        },
-        {
-            name: null,
-            values: [],
-            cssClass: 'statement__empty-row'
-        },
-
-        {
-            name: 'Asset Payback Ability',
-            values: [],
-            cssClass: 'statement__line-item'
-        },
-        {
-            name: 'Current Ratio',
-            values: getStatements().map(statement => statement ? statement.currentRatio : null),
-            cssClass: 'statement__item'
-        },
-        {
-            name: 'Quick Ratio',
-            values: getStatements().map(statement => statement ? statement.quickRatio : null),
-            cssClass: 'statement__item'
-        },
-        {
-            name: 'Cash Ratio',
-            values: getStatements().map(statement => statement ? statement.cashRatio : null),
-            cssClass: 'statement__item'
-        },
-        {
-            name: null,
-            values: [],
-            cssClass: 'statement__empty-row'
-        },
-
-        {
-            name: 'Cash Coverage',
-            values: [],
-            cssClass: 'statement__line-item'
-        },
-        {
-            name: 'Cash Flow Coverage',
-            values: getStatements().map(statement => statement ? statement.cashFlowCoverageRatios : null),
-            cssClass: 'statement__item'
-        },
-        {
-            name: 'Short Term Coverage',
-            values: getStatements().map(statement => statement ? statement.shortTermCoverageRatios : null),
-            cssClass: 'statement__item'
-        },
-        {
-            name: 'Capex Coverage',
-            values: getStatements().map(statement => statement ? statement.capitalExpenditureCoverageRatio : null),
-            cssClass: 'statement__item'
-        },
-        {
-            name: 'Dividend Paid and Capex Coverage',
-            values: getStatements().map(statement => statement ? statement.dividendPaidAndCapexCoverageRatio : null),
-            cssClass: 'statement__item'
-        },
-        {
-            name: null,
-            values: [],
-            cssClass: 'statement__empty-row'
-        },
-        {
             name: 'PROFITIBILITY',
             values: [],
             cssClass: 'statement__header'
@@ -211,6 +144,73 @@ const FinancialMetrics = ({ mainCompany, companies, statements, addCompany, remo
             cssClass: 'statement__empty-row'
         },
         {
+            name: 'LIQUIDITY',
+            values: [],
+            cssClass: 'statement__header'
+        },
+        {
+            name: null,
+            values: [],
+            cssClass: 'statement__empty-row'
+        },
+
+        {
+            name: 'Payback Ability',
+            values: [],
+            cssClass: 'statement__line-item'
+        },
+        {
+            name: 'Current Ratio',
+            values: getStatements().map(statement => statement ? statement.currentRatio : null),
+            cssClass: 'statement__item'
+        },
+        {
+            name: 'Quick Ratio',
+            values: getStatements().map(statement => statement ? statement.quickRatio : null),
+            cssClass: 'statement__item'
+        },
+        {
+            name: 'Cash Ratio',
+            values: getStatements().map(statement => statement ? statement.cashRatio : null),
+            cssClass: 'statement__item'
+        },
+        {
+            name: null,
+            values: [],
+            cssClass: 'statement__empty-row'
+        },
+
+        {
+            name: 'Cash Coverage',
+            values: [],
+            cssClass: 'statement__line-item'
+        },
+        {
+            name: 'Cash Flow Coverage',
+            values: getStatements().map(statement => statement ? statement.cashFlowCoverageRatios : null),
+            cssClass: 'statement__item'
+        },
+        {
+            name: 'Short Term Coverage',
+            values: getStatements().map(statement => statement ? statement.shortTermCoverageRatios : null),
+            cssClass: 'statement__item'
+        },
+        {
+            name: 'Capex Coverage',
+            values: getStatements().map(statement => statement ? statement.capitalExpenditureCoverageRatio : null),
+            cssClass: 'statement__item'
+        },
+        {
+            name: 'Dividend Paid and Capex Coverage',
+            values: getStatements().map(statement => statement ? statement.dividendPaidAndCapexCoverageRatio : null),
+            cssClass: 'statement__item'
+        },
+        {
+            name: null,
+            values: [],
+            cssClass: 'statement__empty-row'
+        },
+        {
             name: 'EFFICIENCY',
             values: [],
             cssClass: 'statement__header'
@@ -259,7 +259,7 @@ const FinancialMetrics = ({ mainCompany, companies, statements, addCompany, remo
         },
 
         {
-            name: 'Cycles',
+            name: 'Operations',
             values: [],
             cssClass: 'statement__line-item'
         },
