@@ -5,7 +5,7 @@ import Row from '../layout/Row'
 import Image from '../misc/Image'
 import Article from '../misc/Article'
 import { BsLaptop, BsFillBarChartFill, BsServer, BsLightbulb, BsPieChart, BsCloudUpload } from 'react-icons/bs'
- 
+import { Link } from 'react-router-dom'
 
 const IndexPage = () => {
 
@@ -15,11 +15,11 @@ const IndexPage = () => {
                 imgSrc='images/citySkyline.jpg'
                 title='Investing Made Simple.'
                 text='With over 100 million data points we offer market beating insights and portfolio analysis'
-                button={<Button 
-                        text='LEARN MORE'
-                        type='light'
-                        onClick={null}
-                        />}
+                button={<Link to='/insights'><Button 
+                    text='LEARN MORE'
+                    type='light'
+                    onClick={null}
+                    /></Link>}
             />
             <div className='spacer-100'>
                 <Banner 
