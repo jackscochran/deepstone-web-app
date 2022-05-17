@@ -44,7 +44,12 @@ const Statement = ({ mainCompany, companies, statement, addCompany, removeCompan
                                 </th>}
                                 {companies && companies.map(company => (
                                     <th className='text-right'>
-                                        <span >{company && company.companyName}</span>
+                                        <span 
+                                            className='highlight-black' 
+                                            onClick={()=>{
+                                                window.location = `/company/${company.ticker}`
+                                            }}
+                                        >{company && company.companyName}</span>
                                         <span onClick={() => {removeCompany(company.ticker)}} className='highlight-black'><BsX className='statement__header'/></span>
                                     </th>
                                     ))}
