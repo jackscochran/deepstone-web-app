@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
+
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0 20px;
+}
+
+p b {
+  color: #000000;
+}
+
+p {
+  color: #696969;
+}
+
+a, .link {
+  text-decoration: none;
+  color: #78b7d8;
+}
+
+a:hover, .link:hover {
+  color: #696969;
+  cursor: pointer;
+}
+
+nav a {
+  color: #696969;
+}
+
+nav a:hover{
+  color: #000000;
+}
+
+.narrow-container{
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.double-space{
+  line-height: 2;
+}
+
+input{
+  border: 1px solid #cacaca;
+  padding: 0 16px;
+  border-radius: 10px;
+  line-height: 2;
+  width: 60%;
+  margin-bottom: 16px;
+}
+
+.row__column{
+  /* padding: 25px; */
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-blue{
+  color: #78b7d8;
+}
+
+.spacer-100 {
+  margin: 100px 0;
+}
+
+.card {
+  display: flex;
+  justify-content: top;
+  align-items: stretch;
+  width: 100%;
+  background-color: white;
+  box-shadow:  0 6px 20px 0 rgb(0 0 0 / 10%);
+  padding: 30px;
+  margin: 16px;
+}
+
+.panel {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: 16px;
+  transition: border-top 0.5s;
+}
+
+.panel:hover{
+  border-top: 3px solid #78b7d8;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+}
+
+
+.highlight-black:hover{
+  color:#000000 !important;
+  cursor: pointer;
+}
+
+.vertical-space{
+  margin: 100px 0
+}
+
+/* ---------------- STATEMENTS --------------- */
+
+.statement {
+  line-height: 30px;
+  width: 90%;
+}
+
+.statement__add{
+  width: 15%;
+  text-align: right;
+  line-height: 2;
+}
+
+.statement__add:hover{
+  color:#000000 !important;
+  cursor: pointer;
+}
+
+.statement__bold {
+  font-weight: bold;
+}
+
+.statement td {
+}
+
+.statement__num {
+  text-align: right;
+}
+
+.statement__header {
+  color: #489fd9;
+  font-weight: bold;
+}
+
+.statement__item {
+}
+
+.statement__line-item {
+  border-top: 1px solid lightgrey;
+  line-height: 40px;
+  font-weight: bold;
+}
+
+.statement__empty-row {
+  height: 12px;
+}
+
+.statement__add{
+  text-align: right;
+  width: 22%;
+  
+}
+
+.statement__add input::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+
+/* -------------- */
+
+/* ---------------- PRICE CHART --------------- */
+
+.price-chart__control{
+  margin: 50px 0;
+  display:flex;
+  align-items: center;
+}
+.price-chart__control-date-values{
+  width: 80%;
+}
+
+
